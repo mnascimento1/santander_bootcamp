@@ -88,15 +88,14 @@ JOIN cliente
 			
 -- teste proposto
 -- Fazer um JOIN acima incluindo transações de cada cliente e tipo de transacão
-
--- Join entre 4 tabelas
 SELECT banco.nome,
 		agencia.nome,
 		conta_corrente.numero,
 		conta_corrente.digito,
 		cliente.nome,
 		cliente_transacoes.valor,
-		cliente_transacoes.tipo_transacao_id
+		cliente_transacoes.tipo_transacao_id,
+		tipo_transacao.nome
 FROM banco
 JOIN agencia ON agencia.banco_numero = banco.numero
 JOIN conta_corrente
@@ -105,7 +104,7 @@ JOIN conta_corrente
 JOIN cliente
 			ON cliente.numero = conta_corrente.cliente_numero
 JOIN cliente_transacoes
-			ON cliente_transacoes.valor = cliente_transacoes.valor
-			AND cliente_transacoes.tipo_transacao_id = tipo_transacao.nome;
-		
+			ON cliente_transacoes.valor = cliente_transacoes.valor			
+JOIN tipo_transacao ON tipo_transacao.id = cliente_transacoes.tipo_transacao_id;
+
 
